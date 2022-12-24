@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './sideBar.css'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
@@ -10,7 +10,27 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
+import db , {auth} from './firebase'
 const Sidebar = () => {
+    const user = useSelector(selectUser);
+    const[channels , setChannels] = useState([])
+    useEffect(()=>{
+       db.collection('channels').onSnapshot(snapshot => {
+        setChannels(snapshot.docs.map((doc) => ({
+            id : doc.id,
+            channel : doc.data(),
+
+        })))
+       })
+    },[])
+    const handleAddChannels = () => {
+        const channelName = prompt("Enter the channel name");
+    }
+    const logout = () =>{
+        auth.signOut();
+    }
   return (
     <div className='sidebar'>
         <div className='sidebar__top'>
@@ -23,14 +43,12 @@ const Sidebar = () => {
                     <ExpandMoreIcon />
                      <h3>Text Channel</h3>
                 </div>
-                <AddIcon className='sidebar__addChannel'></AddIcon>
+                <AddIcon onClick={handleAddChannels} className='sidebar__addChannel'></AddIcon>
             </div>
             <div className='sidebar__channelsList'>
-               <SidebarChannel />
-               <SidebarChannel />
-               <SidebarChannel />
-               <SidebarChannel />
-
+                {channels.map((channel)=> (
+                  <SidebarChannel />
+                ))}
         </div>
         </div>
         <div className='sidebar__voice'>
@@ -45,10 +63,10 @@ const Sidebar = () => {
             </div>
         </div>
         <div className='sidebar__profile'>
-           <Avatar src='https://avatars.githubusercontent.com/u/87183069?s=400&u=9d70fd1e9c34d491524bcdb33bc489f94f2330d7&v=4' />
+           <Avatar onClick={logout} src={user.photo} />
            <div className='sidebar__profileInfo'>
-             <h3>Deepanshu Bisht</h3>
-             <p>#TestingId</p>
+             <h3>{user.displayName}</h3>
+             <p>#{user.uid.substring(0,5)}</p>
            </div>
            <div className='sidebar__profileIcons'>
                <KeyboardVoiceIcon />
