@@ -5,12 +5,16 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import GifIcon from '@mui/icons-material/Gif';
+import Message from './message';
 const Chat = () => {
   return (
     <div className='chat'>
         <ChatHeader />
         <div className='chat__messages'>
-            
+            <Message />
+            <Message />
+            <Message />
+
         </div>
         <div className='chat__input'>
         <AddCircleIcon />
