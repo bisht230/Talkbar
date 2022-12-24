@@ -27,6 +27,11 @@ const Sidebar = () => {
     },[])
     const handleAddChannels = () => {
         const channelName = prompt("Enter the channel name");
+        if(channelName){
+            db.collection('channels').add({
+                channelName : channelName,
+            })
+        }
     }
     const logout = () =>{
         auth.signOut();
@@ -46,8 +51,12 @@ const Sidebar = () => {
                 <AddIcon onClick={handleAddChannels} className='sidebar__addChannel'></AddIcon>
             </div>
             <div className='sidebar__channelsList'>
-                {channels.map((channel)=> (
-                  <SidebarChannel />
+                {channels.map(({id , channel})=> (
+                  <SidebarChannel 
+                  key={id}     //key
+                  id={id}       //props 
+                  channelName={channel.channelName}   //props
+                  />
                 ))}
         </div>
         </div>
