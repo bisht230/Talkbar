@@ -3,17 +3,18 @@
     place-items: center;
     height: 100vh;
     width: 100%;
+    background-color: whitesmoke;
 }
 
 .login>button{
     width: 300px;
-    background-color: #7586c4;
+    background-color: #637edf;
     color:#eff2f5;
     font-weight: 800;
 }
 .login>button:hover{
    background-color: black;
-   color: #738adb;
+   color: #637edf;
 }
 .login > div{
     object-fit: contain;
