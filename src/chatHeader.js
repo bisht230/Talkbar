@@ -6,11 +6,14 @@ import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-const ChatHeader = () => {
+
+const ChatHeader = ({ channelName }) => {
   return (
     <div className='chatHeader'>
           <div className='chatHeader__left'>
-              <h3><span className='chatHeader__hash'>#</span>Test Channel Name</h3>
+              <h3><span className='chatHeader__hash'>#</span>
+              {channelName}
+              </h3>
           </div>
           <div className='chatHeader__right'>
             <NotificationsIcon />
