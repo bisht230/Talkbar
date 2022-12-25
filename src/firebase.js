@@ -2,6 +2,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+
 const firebaseConfig = {
     apiKey: "AIzaSyD9cK-XeQgatHscW9InzAhz6sbgr2dogbc",
     authDomain: "discord-clone-54c69.firebaseapp.com",
