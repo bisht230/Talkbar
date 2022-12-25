@@ -36,6 +36,17 @@
 .chat__inputIcons > .MuiSvgIcon-root{
     padding: 5px;
 }
+
 .chat__messages{
     flex: 1;
+    overflow: scroll;
+}
+
+/* //bug for scrollbar resolving */
+.chat__messages::-webkit-scrollbar{
+    display: none;
+}
+.chat__messages{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
